@@ -1,12 +1,13 @@
 # Menyisakan ruang untuk sign "0b"
 BINARY_SIGN_SPACE = 2
 
-# Atribut untuk konsiderasi pada operasi yang dilakukan
+# Atribut untuk operasi genetic algoritm
 MIN_VALUE = 0 #
 MAX_VALUE = 5 #
 CROMOSOME_NUM = 3 #
 CROMOSOME_PAD = BINARY_SIGN_SPACE + CROMOSOME_NUM
 
+# Inisiasi populasi awal
 populasiAwal = [[10, 4],
                 [-1, -8],
                 [4, 7],

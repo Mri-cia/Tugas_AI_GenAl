@@ -1,5 +1,8 @@
 import case_domain as dom
 
+# Bagian ini untuk beberapa utilitas dalam perubahan bentuk bilangan atau tipe data
+# Bisa juga diletakkan beberapa operasi pengecekan umum
+
 def to_bin(n):
     return f"{n:#0{dom.CROMOSOME_PAD}b}"
 

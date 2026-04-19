@@ -1,5 +1,6 @@
 import case_domain as dom
 
+# Membagi rumus menjadi 4 bagian 
 def decode_cromosome(c):
     undressed_cromosome = c[2:]
 
@@ -12,6 +13,9 @@ def decode_cromosome(c):
 
     print(result)
 
+
+# Untuk penghitungan bagian notasi sigma yang menjumlahkan pangkat negatif dari 2 
+# sejumlah dengan jumlah maksimal bit
 def denominator_summation(length):
     num = 0
     for p in range (1, length+1):
@@ -19,6 +23,8 @@ def denominator_summation(length):
 
     return num
 
+# Untuk penghitungan bagian notasi sigma yang menjumlahkan pangkat negatif dari 2
+# sejumlah dengan jumlah maksimal bit, namun dikalikan dengan setiap bit
 def bit_summation(length,bits):
     num = 0
     for p in range (1, length+1):
