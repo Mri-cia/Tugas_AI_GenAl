@@ -3,6 +3,7 @@ import util
 import decode as dc
 import fitness as ft
 import probability as pb
+import wheel as rw
 
 import case_domain as dom
 
@@ -33,6 +34,12 @@ def main():
         list_prob.append(pb.probability_function(f, list_fit))
 
     print(list_prob)
+
+    parent = rw.random_wheel(list_prob)
+    print("index terpilih: ", parent[0])
+    print("nilai terpilih: ", parent[1])
+
+
 
 if __name__=="__main__":
     main()
