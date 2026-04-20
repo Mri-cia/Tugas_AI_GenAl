@@ -11,7 +11,7 @@ def decode_cromosome(c):
 
     result = first_part + (second_part / third_part * fourth_part)
 
-    print(result)
+    return result
 
 
 # Untuk penghitungan bagian notasi sigma yang menjumlahkan pangkat negatif dari 2 
