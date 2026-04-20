@@ -1,38 +1,3 @@
 Legenda: 
 # (tanda komentar), 
     jika terletak di samping suatu variabel atau function, maka data yang ada dalam variabel atau function hanya dalam pengetesan
-
-
-
-
-    # Inisialisasi populasi
-    populasi = util.initialize_population()
-
-    for i, p in enumerate(dom.populasiAwal):
-        list_x = []
-        for j, ps in enumerate(p):
-            list_x.append(util.to_bin(ps))
-        list_kromosom.append(list_x)
-
-    # Decode semua populasi awal
-    list_decode = []
-
-    for i, p in enumerate(dom.populasiAwal):
-        list_x = []
-
-        for j, ps in enumerate(p):
-            list_x.append(dc.decode_cromosome(util.to_bin(ps)))
-        
-        list_decode.append(list_x)
-
-    # Uji fitness
-    list_fit = []
-
-    for i, dec in enumerate(list_decode):
-        list_fit.append(ft.fitness_func(dec[0], dec[1]))
-
-    # Mengambil probabilitas
-    list_prob = []
-
-    for f in list_fit:
-        list_prob.append(pb.probability_function(f, list_fit))

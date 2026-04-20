@@ -2,6 +2,7 @@ import util
 
 import case_domain as dom
 
+# Inisialisasi data asli menjadi biner
 def initialize_from_fixed(data):
     population = []
     for x1, x2 in data:

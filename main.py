@@ -38,13 +38,14 @@ def main():
             # Fitness
             list_fit.append(ft.fitness_func(x1, x2))
 
-    
+        # Seleksi Orang tua melalui seleksi turnamen
         parents = []
         for _ in range(dom.POP_SIZE):
             candidates = random.sample(list(range(dom.POP_SIZE)), dom.TOURNAMENT_SIZE)
             winner_idx = min(candidates, key=lambda i: list_fit[i])
             parents.append(population_cromosome[winner_idx])
 
+        # Print out data kromosom terbaik
         best_idx = list_fit.index(min(list_fit))
         best_x1, best_x2 = undressed_cromosome[best_idx]
 
@@ -67,6 +68,7 @@ def main():
                     child[idx] = 1 - child[idx]
                 next_gen.append(child)
     
+        # Titik Pemindahan
         population_cromosome = next_gen
 
 
