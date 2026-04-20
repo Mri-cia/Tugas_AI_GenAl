@@ -2,7 +2,7 @@ import util
 
 # Inisiasi populasi awal
 populasiAwal = [[10, 4],
-                [-1, -8],
+                [-2, -2],
                 [4, 7],
                 [-4, 2]]
 
