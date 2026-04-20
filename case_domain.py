@@ -2,11 +2,11 @@ import util
 
 # --- Konfigurasi ---
 POP_SIZE = 20 #Jumlah populasi
-BITS_PER_VAR = 16 #Jumlah bit yang digunakan pada satu variabel
+BITS_PER_VAR = 8 #Jumlah bit yang digunakan pada satu variabel
 TOTAL_BITS = BITS_PER_VAR * 2 #Total bit
 DOMAIN = [-10, 10]  #Batasan
 MUTATION_RATE = 0.02 #Tingkat Mutasi
-GENERATIONS = 200
+GENERATIONS = 20
 TOURNAMENT_SIZE = 2
 
 # Inisiasi populasi awal

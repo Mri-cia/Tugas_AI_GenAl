@@ -57,6 +57,7 @@ def main():
         # Perpindahan pada generasi baru
         next_gen = []
         for i in range(0, dom.POP_SIZE, 2):
+            # Crossover
             p1, p2 = parents[i], parents[i+1]
             cp = random.randint(1, dom.TOTAL_BITS - 1)
             c1, c2 = p1[:cp] + p2[cp:], p2[:cp] + p1[cp:]
