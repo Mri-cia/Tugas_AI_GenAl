@@ -1,31 +1,19 @@
 import util
 
+# --- CONFIGURATION ---
+POP_SIZE = 16
+BITS_PER_VAR = 16
+TOTAL_BITS = BITS_PER_VAR * 2
+DOMAIN = [-10, 10]
+MUTATION_RATE = 0.01
+GENERATIONS = 200
+TOURNAMENT_SIZE = 2
+
 # Inisiasi populasi awal
-populasiAwal = [[10, 4],
-                [-2, -2],
-                [4, 7],
-                [-4, 2]]
-
-
-# Menentukan standar panjang bit
-def max_cromosome():
-    max_c = 0
-    for x in populasiAwal:
-        for v in x:
-            cr = len(bin(v+10)[2:])
-            if max_c <= cr:
-                max_c = cr
-    return max_c
-
-# Menyisakan ruang untuk sign "0b"
-BINARY_SIGN_SPACE = 2
-
-# Atribut untuk operasi genetic algoritm
-MIN_VALUE = -10 #
-MAX_VALUE = 10 #
-CROMOSOME_NUM = max_cromosome() #
-CROMOSOME_PAD = BINARY_SIGN_SPACE + CROMOSOME_NUM
-
+populasiAwal = [
+    (-10, 5), (8, -2), (0, 0), (-5, -5), (3, 9), (-2, 1), (10, -10), (4, -4), (1, -8),
+    (-8, 8), (1, -1), (6, 6), (-3, -3), (7, -9), (-1, 0), (9, 2), (-4, 4), (-9, 10)
+]
 
 
 

@@ -1,5 +1,8 @@
 import math
+import random
+
 import util 
+import initialization as initpop
 import decode as dc
 import fitness as ft
 import probability as pb
@@ -10,34 +13,61 @@ import case_domain as dom
 # Pintu Utama
 def main():
 
-    # Decode semua populasi awal
-    list_decode = []
+    print("="*160)
+    print(f"{'GEN':^5} | {'BEST Steering':^12} | {'BEST Angle':^12} | {'MIN COST f(x)':^15} | {'Best Cromosome':^90}")
+    print("="*160)
 
-    for i in range (0, len(dom.populasiAwal)):
-        list_x = []
+    # Inisialisasi populasi kromosom
+    population_cromosome = initpop.initialize_from_fixed(dom.populasiAwal)
 
-        for j in range (0, len(dom.populasiAwal[i])):
-            list_x.append(dc.decode_cromosome(util.to_bin(dom.populasiAwal[i][j])))
+    for g in range(dom.GENERATIONS+1):
+        display_data = []
+
+        # Decode dan fitness
+        undressed_cromosome = []
+        list_fit = []
         
-        list_decode.append(list_x)
+        for c in population_cromosome:
+            b1 = c[:dom.BITS_PER_VAR]
+            b2 = c[dom.BITS_PER_VAR:]
 
-    list_fit = []
+            # Decode
+            x1 = dc.decode_cromosome(b1, dom.DOMAIN[0], dom.DOMAIN[1])
+            x2 = dc.decode_cromosome(b2, dom.DOMAIN[0], dom.DOMAIN[1])
+            undressed_cromosome.append((x1, x2))
+            # Fitness
+            list_fit.append(ft.fitness_func(x1, x2))
 
-    for i in range (0, len(dom.populasiAwal)):
-        list_fit.append(ft.fitness_func(list_decode[i][0], list_decode[i][1]))
+    
+        parents = []
+        for _ in range(dom.POP_SIZE):
+            candidates = random.sample(list(range(dom.POP_SIZE)), dom.TOURNAMENT_SIZE)
+            winner_idx = min(candidates, key=lambda i: list_fit[i])
+            parents.append(population_cromosome[winner_idx])
 
-    print(list_fit)
+        best_idx = list_fit.index(min(list_fit))
+        best_x1, best_x2 = undressed_cromosome[best_idx]
 
-    list_prob = []
+        ix = population_cromosome[best_idx]
 
-    for f in list_fit:
-        list_prob.append(pb.probability_function(f, list_fit))
+        print(f"{g:^5} | {best_x1:^13.4f} | {best_x2:^12.4f} | {min(list_fit):^15.6f} | {str(ix):>20} ")
 
-    print(list_prob)
-
-    parent = rw.random_wheel(list_prob)
-    print("index terpilih: ", parent[0])
-    print("nilai terpilih: ", parent[1])
+    
+        # Perpindahan pada generasi baru
+        next_gen = []
+        for i in range(0, dom.POP_SIZE, 2):
+            p1, p2 = parents[i], parents[i+1]
+            cp = random.randint(1, dom.TOTAL_BITS - 1)
+            c1, c2 = p1[:cp] + p2[cp:], p2[:cp] + p1[cp:]
+            
+            # Mutation
+            for child in [c1, c2]:
+                if random.random() < dom.MUTATION_RATE:
+                    idx = random.randint(0, dom.TOTAL_BITS - 1)
+                    child[idx] = 1 - child[idx]
+                next_gen.append(child)
+    
+        population_cromosome = next_gen
 
 
 
